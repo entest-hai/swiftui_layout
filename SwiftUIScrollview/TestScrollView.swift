@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import CoreGraphics
 
 struct TestScrollView: View {
     var body: some View {
@@ -15,8 +16,11 @@ struct TestScrollView: View {
                 ScrollView(.horizontal, showsIndicators: false){
                     HStack{
                         ForEach(0..<5){index in
-                            NameCardView(img: "sea")
-                                .padding(6)
+                            VStack{
+                                NameCardView(img: "sea")
+                                Text("\(index)")
+                            }
+                            .padding()
                         }
                     }
                 }
@@ -35,3 +39,22 @@ struct NameCardView : View {
             .cornerRadius(20)
     }
 }
+
+
+struct TestWidgeImage : View {
+    var body: some View {
+        NavigationView {
+            VStack{
+                ScrollView(.horizontal){
+                    HStack{
+                        Image("sea")
+                            .resizable()
+                            .scaledToFit()
+                    }
+                }
+            }
+            .navigationBarTitle(Text("Wide"))
+        }
+    }
+}
+
