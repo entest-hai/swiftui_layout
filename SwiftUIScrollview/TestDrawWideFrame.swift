@@ -8,6 +8,32 @@
 
 import SwiftUI
 
+// Wide Rectangular With ScrollView and HStack
+struct TestDrawSquare : View {
+    var body: some View {
+        NavigationView{
+            VStack{
+                Spacer()
+                ScrollView(.horizontal){
+                    HStack{
+                        MySquare()
+                            .stroke(lineWidth: 1.0)
+                            .background(Color.blue)
+                            .frame(width: UIScreen.main.bounds.width*5, height: 300)
+                            .scaledToFit()
+                            .padding()
+                        
+                    }
+                    .padding()
+                }
+                Spacer()
+            }
+        .navigationBarTitle(Text("Draw"))
+        }
+    }
+}
+
+// Wide BadgeBackGround Width ScrollView and HStack
 struct TestDrawWideFrame: View {
     var body: some View {
         NavigationView{
@@ -17,7 +43,8 @@ struct TestDrawWideFrame: View {
                         .scaledToFit()
                 }
             }
-            .navigationBarTitle(Text("WideFrame"))
+            .navigationBarTitle(Text("Trends"))
+            
         }
     }
 }
@@ -104,3 +131,16 @@ struct HexagonParameters {
         )
     ]
 }
+
+struct MySquare: Shape {
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
+        path.move(to: CGPoint(x: rect.size.width, y: 0))
+        path.addLine(to: CGPoint(x: rect.size.width, y: rect.size.height))
+        path.addLine(to: CGPoint(x: 0, y: rect.size.height))
+        path.addLine(to: CGPoint(x:0, y: 0))
+        path.closeSubpath()
+        return path
+    }
+}
+
